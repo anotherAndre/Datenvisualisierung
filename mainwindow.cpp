@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "opengldisplaywidget.h"
 
+#include <iostream>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     // For the purpose of this exercise, we implement the entire visualization
     // pipeline in this OpenGL widget. This may not be the best system
     // architecture, but it makes things sufficently simple for us.
+
+    std::cout << "mainwinfow init i guess\n";
 
     OpenGLDisplayWidget *openGLDisplay = new OpenGLDisplayWidget(this);
 
@@ -27,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(openGLDisplay);
     // Fenster Größte X, Y
     resize(900, 900);
+
+    std::cout << "maindow out \n";
 }
 
 

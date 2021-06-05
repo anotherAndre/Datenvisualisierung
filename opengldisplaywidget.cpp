@@ -11,6 +11,7 @@ OpenGLDisplayWidget::OpenGLDisplayWidget(QWidget *parent)
     : QOpenGLWidget(parent),
       distanceToCamera(-8.0)
 {
+    std::cout << "init gopengldisplaywidget\n";
     setFocusPolicy(Qt::StrongFocus);
 }
 
@@ -58,8 +59,10 @@ void OpenGLDisplayWidget::initializeGL()
 
     // Set the backgound color of the OpenGL display
     // enable the depth buffer.
+    std::cout << "enable depth test";
     QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
     f->glClearColor(0, 0, 0, 1);
+
     f->glEnable(GL_DEPTH_TEST);
 
     // Our own initialization of the visualization pipeline.
@@ -92,7 +95,8 @@ void OpenGLDisplayWidget::paintGL()
     // ....
     // cal mini BB renderer
     //minBboxRenderer->drawBoundingBox(mvpMatrix);
-    hSliceRenderer->drawBoundingBox(mvpMatrix);
+    //hSliceRenderer->drawBoundingBox(mvpMatrix);
+    hSliceRenderer->drawImage(mvpMatrix);
 }
 
 
@@ -197,17 +201,24 @@ void OpenGLDisplayWidget::initVisualizationPipeline()
     // Initialize data source(s).
     // ....
     // initialisierung der FlowDataSource
+    std::cout << "init flow in pipe\n";
     tornadoDataSource = new FlowDataSource();
 
     // Initialize mapper modules.
     // ....
+    std::cout << "init mapper in pipe\n";
     hSliceMapper = new HorizontalSliceToImageMapper();
     hSliceMapper->setDataSource(tornadoDataSource);
 
     // Initialize rendering modules.
+    std::cout << "init bb renderer in pipe\n";
     bboxRenderer = new DataVolumeBoundingBoxRenderer();
     // ....
     // initialisierung vom mini BB renderer
     //minBboxRenderer = new HorizontalSliceRenderer();
+    std::cout << "init slice renderer in pipe";
     hSliceRenderer = new HorizontalSliceRenderer();
+    // setze den Mapper im Horizontal Slince renderer
+    std::cout << "set mapper of slice renderer in pipe\n";
+    hSliceRenderer->setMapper(hSliceMapper);
 }

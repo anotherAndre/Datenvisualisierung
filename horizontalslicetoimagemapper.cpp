@@ -13,7 +13,7 @@ void HorizontalSliceToImageMapper::setDataSource(FlowDataSource *data_source)
 }
 
 
-QImage HorizontalSliceToImageMapper::mapSliceToImage(int iz)
+QImage HorizontalSliceToImageMapper::mapSliceToImage(int time, int iz)
 {
     // initialisierung von irgendeinem QImage mit den ausmaßen dataSource->xs und dataSource-ys
     QImage image(xs, ys, QImage::Format_RGB32);

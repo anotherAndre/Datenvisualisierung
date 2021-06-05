@@ -72,7 +72,11 @@ OBJECTS       = release/flowdatasource.o \
 
 DIST          = lines_fshader.glsl \
 		lines_fshader_mini.glsl \
-		lines_vshader.glsl flowdatasource.h \
+		lines_vshader.glsl \
+		schablone_fshader.glsl \
+		schablone_vshader.glsl \
+		slice_fshader.glsl \
+		slice_vshader.glsl flowdatasource.h \
 		horizontalslicerenderer.h \
 		horizontalslicetoimagemapper.h \
 		mainwindow.h \
@@ -377,7 +381,16 @@ release/moc_opengldisplaywidget.cpp: opengldisplaywidget.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLVertexArrayObject \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglvertexarrayobject.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QObject \
+		horizontalslicetoimagemapper.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QImage \
+		flowdatasource.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QCoreApplication \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
 		horizontalslicerenderer.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLTexture \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopengltexture.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QScopedPointer \
 		release/moc_predefs.h \
 		../../../../Qt5/5.15.2/mingw81_64/bin/moc.exe
 	C:\Qt5\5.15.2\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/gaming/DV_uebungen/sose21_vis_uebung_template/release/moc_predefs.h -IC:/Qt5/5.15.2/mingw81_64/mkspecs/win32-g++ -IC:/Users/gaming/DV_uebungen/sose21_vis_uebung_template -IC:/Qt5/5.15.2/mingw81_64/include -IC:/Qt5/5.15.2/mingw81_64/include/QtWidgets -IC:/Qt5/5.15.2/mingw81_64/include/QtGui -IC:/Qt5/5.15.2/mingw81_64/include/QtANGLE -IC:/Qt5/5.15.2/mingw81_64/include/QtCore -IC:/Qt5/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt5/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt5/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt5/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt5/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt5/Tools/mingw810_64/x86_64-w64-mingw32/include opengldisplaywidget.h -o release\moc_opengldisplaywidget.cpp
@@ -551,10 +564,31 @@ release/horizontalslicerenderer.o: horizontalslicerenderer.cpp horizontalslicere
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLVertexArrayObject \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglvertexarrayobject.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QObject \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLTexture \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopengltexture.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qimage.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qcolor.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qrgb.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qrgba64.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qpixelformat.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qtransform.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qmatrix.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qpolygon.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qregion.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qline.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QScopedPointer \
+		horizontalslicetoimagemapper.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QImage \
+		flowdatasource.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QCoreApplication \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLFunctions \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglfunctions.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglcontext.h \
-		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QScopedPointer \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QSurfaceFormat \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qsurfaceformat.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglversionfunctions.h \
@@ -634,7 +668,11 @@ release/horizontalslicetoimagemapper.o: horizontalslicetoimagemapper.cpp horizon
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qvarlengtharray.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qcontainerfwd.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qobject_impl.h \
-		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qline.h
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qline.h \
+		flowdatasource.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QCoreApplication \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qeventloop.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\horizontalslicetoimagemapper.o horizontalslicetoimagemapper.cpp
 
 release/main.o: main.cpp mainwindow.h \
@@ -890,7 +928,16 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLVertexArrayObject \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglvertexarrayobject.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QObject \
-		horizontalslicerenderer.h
+		horizontalslicetoimagemapper.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QImage \
+		flowdatasource.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QCoreApplication \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
+		horizontalslicerenderer.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLTexture \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopengltexture.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QScopedPointer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o mainwindow.cpp
 
 release/opengldisplaywidget.o: opengldisplaywidget.cpp opengldisplaywidget.h \
@@ -1023,12 +1070,20 @@ release/opengldisplaywidget.o: opengldisplaywidget.cpp opengldisplaywidget.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLVertexArrayObject \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglvertexarrayobject.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QObject \
+		horizontalslicetoimagemapper.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QImage \
+		flowdatasource.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QCoreApplication \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/qeventloop.h \
 		horizontalslicerenderer.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLTexture \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopengltexture.h \
+		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QScopedPointer \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QMouseEvent \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/QOpenGLFunctions \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglfunctions.h \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglcontext.h \
-		../../../../Qt5/5.15.2/mingw81_64/include/QtCore/QScopedPointer \
 		../../../../Qt5/5.15.2/mingw81_64/include/QtGui/qopenglversionfunctions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\opengldisplaywidget.o opengldisplaywidget.cpp
 

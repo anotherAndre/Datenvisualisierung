@@ -45,4 +45,8 @@ HEADERS += \
 DISTFILES += \
     lines_fshader.glsl \
     lines_fshader_mini.glsl \
-    lines_vshader.glsl
+    lines_vshader.glsl \
+    schablone_fshader.glsl \
+    schablone_vshader.glsl \
+    slice_fshader.glsl \
+    slice_vshader.glsl
