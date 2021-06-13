@@ -14,10 +14,10 @@ class FlowDataSource
 
     void print_array(float arr[16*16*16*3]);
 public:
-    int xs = 16;
-    int ys = 16;
-    int zs = 16;
-    int cs = 3;
+//    int xs = 16;
+//    int ys = 16;
+//    int zs = 16;
+//    int cs = 3;
     FlowDataSource();
     void gen_tornado( int xs, int ys, int zs, int time, float *tornado );
     void createData();

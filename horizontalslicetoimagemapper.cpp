@@ -16,29 +16,31 @@ void HorizontalSliceToImageMapper::setDataSource(FlowDataSource *data_source)
 QImage HorizontalSliceToImageMapper::mapSliceToImage(int time, int iz)
 {
     // initialisierung von irgendeinem QImage mit den ausmaßen dataSource->xs und dataSource-ys
-    QImage image(xs, ys, QImage::Format_RGB32);
-    int red, green, blue;
+    //_data_source->createData();
 
-    for (int ix=0; ix < xs; ix ++)
+    QImage image = QImage(16, 16, QImage::Format_RGB32);
+    if(image.isNull())
+        std::cout << "Image in mapSliceToImage is Null";
+
+    for (int ix=0; ix < 16; ix ++)
     {
-        for (int iy = 0; iy < ys; iy ++)
+        for (int iy = 0; iy < 16; iy ++)
         {
-            int xWind = _data_source->getDataValue(iz, iy, ix, 0);
+            int xWindColorValue = _data_source->getDataValue(iz, iy, ix, 0) *3*255;
+            //int xWindColorValue = 100;
             //getDataValue(iz, iy, ix, 1)
             //getDataValue(iz, iy, ix, 2)
-            green = 0;
-            if (xWind > 0)
+            QColor color;
+            if (xWindColorValue < 0)
             {
-                red = xWind*3*255;
-                blue = 0;
+                color.setRgb(0, 0, (int)-xWindColorValue);
             }
             else
             {
-                blue = -1*xWind*3*255;
-                red = 0;
+                color.setRgb((int)xWindColorValue, 0, 0);
             }
 
-            image.setPixelColor(ix, iy, QColor(red, green, blue, 255));
+            image.setPixelColor(ix, iy, color);
         }
     }
     return image;

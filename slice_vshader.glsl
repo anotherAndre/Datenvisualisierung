@@ -7,10 +7,10 @@ uniform mat4 mvpMatrix;
 
 smooth out vec2 texCoordVS2FS;
 
-
+// simple example aus übungs folien übung 2
 void main()
 {
-    gl_Position = mvpMatrix * sliceVertexPosition;
+    gl_Position = mvpMatrix * vec4(sliceVertexPosition.xyz, 1);
     texCoordVS2FS = vertexTexCoord;
 }
 

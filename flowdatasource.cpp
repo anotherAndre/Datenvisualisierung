@@ -97,8 +97,8 @@ void FlowDataSource::createData()
     /**
      * Erzeugt ein Array, in welchem das kartesische Gitter gespeichert wird
     **/
-    cartesianDataGrid = new float[xs*ys*zs*3];
-    gen_tornado(xs, ys, zs, 0, cartesianDataGrid);
+    cartesianDataGrid = new float[16*16*16*3];
+    gen_tornado(16, 16, 16, 0, cartesianDataGrid);
 }
 
 
@@ -106,16 +106,16 @@ float FlowDataSource::getDataValue(int iz, int iy, int ix, int ic)
 {
     // achtung falsch
     //int value_index = ic + 3*ix + xs*iy + ys*iz;
-    int value_index = iz*ys*xs*cs + iy*xs*cs + ix*cs + ic;
+    int value_index = iz*16*16*3 + iy*16*3 + ix*3 + ic;
     return cartesianDataGrid[value_index];
 }
 
 
 void FlowDataSource::printValuesOfOrthogonalSlice(int iz)
 {
-    for (int ix=0; ix < xs; ix ++)
+    for (int ix=0; ix < 16; ix ++)
     {
-        for (int iy = 0; iy < ys; iy ++)
+        for (int iy = 0; iy < 16; iy ++)
         {
             cout << "(";
             cout << getDataValue(iz, iy, ix, 0) << ",";

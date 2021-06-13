@@ -15,7 +15,7 @@ HorizontalSliceRenderer::HorizontalSliceRenderer()
     //initBoundingBoxGeometry();
     // initialisierung der Vertices des Rahmens
     std::cout << "test0";
-    initHorizontalSlice(1, 5);
+    //initHorizontalSlice(1, 5);
     std::cout << "test";
 }
 
@@ -23,7 +23,7 @@ HorizontalSliceRenderer::HorizontalSliceRenderer()
 HorizontalSliceRenderer::~HorizontalSliceRenderer()
 {
     vertexBuffer.destroy();
-    //texture.destroy();
+    texture.destroy();
 }
 
 
@@ -92,7 +92,8 @@ void HorizontalSliceRenderer::drawImage(QMatrix4x4 mvpMatrix)
     // die Breite der Linien ist 2
     f->glLineWidth(2);
     // Es werden immer 2 aufeinander folgende Punkte als Linie gezeichnet?
-    f->glDrawArrays(GL_LINE_STRIP, 0, 5);
+    //f->glDrawArrays(GL_LINE_STRIP, 0, 5);
+    f->glDrawArrays(GL_TRIANGLE_FAN, 0, 5);
 
     std::cout << "draw image release stuff \n";
 
@@ -179,7 +180,9 @@ void HorizontalSliceRenderer::initOpenGLShaders()
 // initialisiert die zum Zeichnen der Geometrie benötigten Daten auf der GPU
 void HorizontalSliceRenderer::initHorizontalSlice(int time, int iz)
 {
+
     // Vertices of a unit square that represents the box.
+    std::cout << "init hslice renderer 0\n";
 
     const unsigned int numVertices = 5;
     float unitCubeVertices[numVertices][3] = {
@@ -191,16 +194,24 @@ void HorizontalSliceRenderer::initHorizontalSlice(int time, int iz)
         {0, 0, iz/15.f}
     };
 
+    std::cout << "init hslice renderer 1\n";
+
     // Create vertex buffer and upload vertex data to buffer.
     vertexBuffer.create(); // make sure to destroy in destructor!
     // Binden des Buffers
     vertexBuffer.bind();
+
+    std::cout << "init hslice renderer 2\n";
 
     // Allokieren der Quadrat Punkte
     //vertexBuffer.allocate(image vertices, sizeof(image));
     vertexBuffer.allocate(unitCubeVertices, numVertices * 3 * sizeof(float));
 
     vertexBuffer.release();
+
+
+
+    std::cout << "init hslice renderer 3\n";
 
     // Store the information OpenGL needs for rendering the vertex buffer
     // in a "vertex array object". This can easily be bound to the OpenGL
@@ -231,8 +242,14 @@ void HorizontalSliceRenderer::initHorizontalSlice(int time, int iz)
         vertexBuffer.release();
     }
 
+
+
+    std::cout << "init hslice renderer 4\n";
+
 //    // erzeugen des Images
     QImage image = hScliceMapper->mapSliceToImage(time, iz);
+
+
 
     if(!texture.isCreated())
         texture.destroy();
@@ -243,7 +260,13 @@ void HorizontalSliceRenderer::initHorizontalSlice(int time, int iz)
         texture.setMagnificationFilter(QOpenGLTexture::Linear);
         texture.setMipLevels(0);
     }
+
     texture.create();
+
+    texture.setWrapMode(QOpenGLTexture::ClampToEdge);
+
     // texture daten auf die hslice daten setzen
     texture.setData(image);
+
+    texture.release();
 }

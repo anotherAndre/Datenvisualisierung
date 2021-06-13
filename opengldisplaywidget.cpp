@@ -203,6 +203,7 @@ void OpenGLDisplayWidget::initVisualizationPipeline()
     // initialisierung der FlowDataSource
     std::cout << "init flow in pipe\n";
     tornadoDataSource = new FlowDataSource();
+    tornadoDataSource->printValuesOfOrthogonalSlice(0);
 
     // Initialize mapper modules.
     // ....
