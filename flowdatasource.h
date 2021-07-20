@@ -20,8 +20,9 @@ public:
 //    int cs = 3;
     FlowDataSource();
     void gen_tornado( int xs, int ys, int zs, int time, float *tornado );
-    void createData();
+    void createData(int time);
     float getDataValue(int iz, int iy, int ix, int ic);
+    QVector3D getDataVector(int iz, int iy, int ix);
     void printValuesOfOrthogonalSlice(int iz);
 };
 

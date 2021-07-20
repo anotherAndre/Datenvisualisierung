@@ -17,7 +17,7 @@ public:
 
     // Draw the bounding box to the current OpenGL viewport.
     void drawBoundingBox(QMatrix4x4 mvpMatrix);
-    void drawImage(QMatrix4x4 mvpMatrix);
+    void drawImage(QMatrix4x4 mvpMatrix, int iz, int time);
     void setMapper(HorizontalSliceToImageMapper *mapper);
 
 private:

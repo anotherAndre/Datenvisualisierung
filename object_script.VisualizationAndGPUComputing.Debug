@@ -1,5 +1,7 @@
 debug/flowdatasource.o
+debug/horizontalcontourlinesrenderer.o
 debug/horizontalslicerenderer.o
+debug/horizontalslicetocontourmapper.o
 debug/horizontalslicetoimagemapper.o
 debug/main.o
 debug/mainwindow.o

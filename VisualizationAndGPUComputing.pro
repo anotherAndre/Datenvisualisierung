@@ -25,24 +25,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     flowdatasource.cpp \
+    horizontalcontourlinesrenderer.cpp \
     horizontalslicerenderer.cpp \
+    horizontalslicetocontourmapper.cpp \
     horizontalslicetoimagemapper.cpp \
     main.cpp \
     mainwindow.cpp \
     opengldisplaywidget.cpp \
     datavolumeboundingboxrenderer.cpp \
+    streamlinesmapper.cpp \
     tornado.cpp
 
 HEADERS += \
     flowdatasource.h \
+    horizontalcontourlinesrenderer.h \
     horizontalslicerenderer.h \
+    horizontalslicetocontourmapper.h \
     horizontalslicetoimagemapper.h \
     mainwindow.h \
     opengldisplaywidget.h \
     datavolumeboundingboxrenderer.h \
+    streamlinesmapper.h \
     tornado.h
 
 DISTFILES += \
+    contour_fshader.glsl \
+    contour_vshader.glsl \
     lines_fshader.glsl \
     lines_fshader_mini.glsl \
     lines_vshader.glsl \

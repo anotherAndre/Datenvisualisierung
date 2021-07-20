@@ -6,6 +6,8 @@
 #include "horizontalslicetoimagemapper.h"
 #include "horizontalslicerenderer.h"
 #include "flowdatasource.h"
+#include "horizontalslicetocontourmapper.h"
+#include "horizontalcontourlinesrenderer.h"
 
 
 class OpenGLDisplayWidget : public QOpenGLWidget
@@ -35,6 +37,9 @@ private:
 
     // Matrices and related variables that control vertex transformation
     // from world space to OpenGL view space.
+    int iz;
+    int time;
+
     QMatrix4x4 projectionMatrix;
     QMatrix4x4 mvpMatrix;
     QVector2D lastMousePosition;
@@ -57,8 +62,10 @@ private:
     FlowDataSource *tornadoDataSource;
 
     HorizontalSliceToImageMapper *hSliceMapper;
+    horizontalSliceToContourMapper *hContourMapper;
 
     HorizontalSliceRenderer *hSliceRenderer;
+    horizontalContourlinesRenderer *hContourRenderer;
 
     // Initialize the pipeline (create instances of data source, mapping,
     // rendering etc. modules and connect them).

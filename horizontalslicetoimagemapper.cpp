@@ -6,7 +6,7 @@ HorizontalSliceToImageMapper::HorizontalSliceToImageMapper()
 
 }
 
-
+// TODO lowerCamelCase?
 void HorizontalSliceToImageMapper::setDataSource(FlowDataSource *data_source)
 {
     _data_source = data_source;
@@ -16,7 +16,7 @@ void HorizontalSliceToImageMapper::setDataSource(FlowDataSource *data_source)
 QImage HorizontalSliceToImageMapper::mapSliceToImage(int time, int iz)
 {
     // initialisierung von irgendeinem QImage mit den ausmaßen dataSource->xs und dataSource-ys
-    //_data_source->createData();
+    _data_source->createData(time);
 
     QImage image = QImage(16, 16, QImage::Format_RGB32);
     if(image.isNull())

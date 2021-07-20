@@ -62,10 +62,10 @@ void HorizontalSliceRenderer::setMapper(HorizontalSliceToImageMapper *mapper)
 
 
 // Hier wird das Image gezeichnet
-void HorizontalSliceRenderer::drawImage(QMatrix4x4 mvpMatrix)
+void HorizontalSliceRenderer::drawImage(QMatrix4x4 mvpMatrix, int iz, int time)
 {
     std::cout << "draw image init slice";
-    initHorizontalSlice(1, 5);
+    initHorizontalSlice(time, iz);
 
     std::cout << "draw image linking stuff\n";
     shaderProgram.link();

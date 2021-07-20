@@ -1,9 +1,10 @@
 #include "flowdatasource.h"
+#include <QVector3D>
 
 
 FlowDataSource::FlowDataSource()
 {
-    createData();
+    createData(0);
     //printValuesOfOrthogonalSlice(10);
 }
 
@@ -92,13 +93,14 @@ void FlowDataSource::print_array(float arr[16*16*16*3])
 }
 
 
-void FlowDataSource::createData()
+// caching durch init data: createData(0) und dann zeit merken und nur dann updaten, wenn anders (zeit updaten)
+void FlowDataSource::createData(int time)
 {
     /**
      * Erzeugt ein Array, in welchem das kartesische Gitter gespeichert wird
     **/
     cartesianDataGrid = new float[16*16*16*3];
-    gen_tornado(16, 16, 16, 0, cartesianDataGrid);
+    gen_tornado(16, 16, 16, time, cartesianDataGrid);
 }
 
 
@@ -108,6 +110,13 @@ float FlowDataSource::getDataValue(int iz, int iy, int ix, int ic)
     //int value_index = ic + 3*ix + xs*iy + ys*iz;
     int value_index = iz*16*16*3 + iy*16*3 + ix*3 + ic;
     return cartesianDataGrid[value_index];
+}
+
+QVector3D FlowDataSource::getDataVector(int iz, int iy, int ix){
+    float c0 = getDataValue(iz, iy, ix, 0);
+    float c1 = getDataValue(iz, iy, ix, 1);
+    float c2 = getDataValue(iz, iy, ix, 2);
+    return QVector3D(c0, c1, c2);
 }
 
 

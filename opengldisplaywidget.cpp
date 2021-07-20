@@ -13,6 +13,8 @@ OpenGLDisplayWidget::OpenGLDisplayWidget(QWidget *parent)
 {
     std::cout << "init gopengldisplaywidget\n";
     setFocusPolicy(Qt::StrongFocus);
+    iz = 0;
+    time = 0;
 }
 
 
@@ -96,7 +98,9 @@ void OpenGLDisplayWidget::paintGL()
     // cal mini BB renderer
     //minBboxRenderer->drawBoundingBox(mvpMatrix);
     //hSliceRenderer->drawBoundingBox(mvpMatrix);
-    hSliceRenderer->drawImage(mvpMatrix);
+    hSliceRenderer->drawImage(mvpMatrix, iz, time);
+
+    hContourRenderer->drawContourLines(mvpMatrix, iz, time);
 }
 
 
@@ -160,10 +164,29 @@ void OpenGLDisplayWidget::keyPressEvent(QKeyEvent *e)
     if (e->key() == Qt::Key_Up)
     {
         // Do stuff...
+        iz++;
+        if(iz > 15)
+            iz = 15;
     }
     else if (e->key() == Qt::Key_Down)
     {
         // Do stuff...
+        iz--;
+        if(iz < 0)
+            iz = 0;
+    }
+    // TODO zeit via rechts und links
+    else if (e->key() == Qt::Key_Right)
+    {
+        // Do stuff...
+        time++;
+    }
+    else if (e->key() == Qt::Key_Left)
+    {
+        // Do stuff...
+        time--;
+        if(time < 0)
+            time = 0;
     }
     else
     {
@@ -203,13 +226,16 @@ void OpenGLDisplayWidget::initVisualizationPipeline()
     // initialisierung der FlowDataSource
     std::cout << "init flow in pipe\n";
     tornadoDataSource = new FlowDataSource();
-    tornadoDataSource->printValuesOfOrthogonalSlice(0);
+    //tornadoDataSource->printValuesOfOrthogonalSlice(0);
 
     // Initialize mapper modules.
     // ....
     std::cout << "init mapper in pipe\n";
     hSliceMapper = new HorizontalSliceToImageMapper();
     hSliceMapper->setDataSource(tornadoDataSource);
+
+    hContourMapper = new horizontalSliceToContourMapper();
+    hContourMapper->setDataSource(tornadoDataSource);
 
     // Initialize rendering modules.
     std::cout << "init bb renderer in pipe\n";
@@ -222,4 +248,7 @@ void OpenGLDisplayWidget::initVisualizationPipeline()
     // setze den Mapper im Horizontal Slince renderer
     std::cout << "set mapper of slice renderer in pipe\n";
     hSliceRenderer->setMapper(hSliceMapper);
+
+    hContourRenderer = new horizontalContourlinesRenderer();
+    hContourRenderer->setMapper(hContourMapper);
 }

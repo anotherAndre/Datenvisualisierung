@@ -1,5 +1,7 @@
 release/flowdatasource.o
+release/horizontalcontourlinesrenderer.o
 release/horizontalslicerenderer.o
+release/horizontalslicetocontourmapper.o
 release/horizontalslicetoimagemapper.o
 release/main.o
 release/mainwindow.o
