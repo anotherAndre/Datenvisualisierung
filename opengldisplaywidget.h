@@ -8,6 +8,8 @@
 #include "flowdatasource.h"
 #include "horizontalslicetocontourmapper.h"
 #include "horizontalcontourlinesrenderer.h"
+#include "streamlinesmapper.h"
+#include "streamlinesrenderer.h"
 
 
 class OpenGLDisplayWidget : public QOpenGLWidget
@@ -66,6 +68,9 @@ private:
 
     HorizontalSliceRenderer *hSliceRenderer;
     horizontalContourlinesRenderer *hContourRenderer;
+
+    StreamLinesRenderer *streamlinesRenderer;
+    StreamLinesMapper *streamlinesMapper;
 
     // Initialize the pipeline (create instances of data source, mapping,
     // rendering etc. modules and connect them).

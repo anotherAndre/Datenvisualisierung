@@ -99,8 +99,11 @@ void FlowDataSource::createData(int time)
     /**
      * Erzeugt ein Array, in welchem das kartesische Gitter gespeichert wird
     **/
-    cartesianDataGrid = new float[16*16*16*3];
-    gen_tornado(16, 16, 16, time, cartesianDataGrid);
+    if(time != last_time){
+        cartesianDataGrid = new float[16*16*16*3];
+        gen_tornado(16, 16, 16, time, cartesianDataGrid);
+        last_time = time;
+    }
 }
 
 

@@ -34,6 +34,7 @@ SOURCES += \
     opengldisplaywidget.cpp \
     datavolumeboundingboxrenderer.cpp \
     streamlinesmapper.cpp \
+    streamlinesrenderer.cpp \
     tornado.cpp
 
 HEADERS += \
@@ -46,6 +47,7 @@ HEADERS += \
     opengldisplaywidget.h \
     datavolumeboundingboxrenderer.h \
     streamlinesmapper.h \
+    streamlinesrenderer.h \
     tornado.h
 
 DISTFILES += \
@@ -57,4 +59,6 @@ DISTFILES += \
     schablone_fshader.glsl \
     schablone_vshader.glsl \
     slice_fshader.glsl \
-    slice_vshader.glsl
+    slice_vshader.glsl \
+    streamline_fshader.glsl \
+    streamline_vshader.glsl

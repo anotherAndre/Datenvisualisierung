@@ -1,5 +1,5 @@
-#ifndef HORIZONTALSLICETOCONTOURMAPPER_H
-#define HORIZONTALSLICETOCONTOURMAPPER_H
+#ifndef STREAMLINESMAPPER_H
+#define STREAMLINESMAPPER_H
 
 #include <QImage>
 #include "flowdatasource.h"
@@ -18,6 +18,9 @@ public:
     QVector<QVector3D> mapSliceToContour(int time, int iz, float c);
     QVector3D getIntersection(int x1, int y1, int x2, int y2, int iz, float c);
     QVector3D interpolateWindVetor(QVector3D position);
+    QVector<QVector3D> computeStreamlines(QVector<QVector3D> seedPoints, int time);
+    QVector3D EulerIntegrate(QVector3D position, float stepSize);
+    QVector3D RKIntegrate(QVector3D position, float stepSize);
 };
 
-#endif // HORIZONTALSLICETOCONTOURMAPPER_H
+#endif // STREAMLINESMAPPER_H

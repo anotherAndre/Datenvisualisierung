@@ -13,6 +13,9 @@ class FlowDataSource
     float *cartesianDataGrid;
 
     void print_array(float arr[16*16*16*3]);
+
+private:
+    int last_time = -1;
 public:
 //    int xs = 16;
 //    int ys = 16;

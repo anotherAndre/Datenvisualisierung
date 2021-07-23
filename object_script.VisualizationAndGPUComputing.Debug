@@ -7,6 +7,8 @@ debug/main.o
 debug/mainwindow.o
 debug/opengldisplaywidget.o
 debug/datavolumeboundingboxrenderer.o
+debug/streamlinesmapper.o
+debug/streamlinesrenderer.o
 debug/tornado.o
 debug/moc_mainwindow.o
 debug/moc_opengldisplaywidget.o

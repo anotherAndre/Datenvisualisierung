@@ -101,6 +101,8 @@ void OpenGLDisplayWidget::paintGL()
     hSliceRenderer->drawImage(mvpMatrix, iz, time);
 
     hContourRenderer->drawContourLines(mvpMatrix, iz, time);
+
+    streamlinesRenderer->drawStreamLines(mvpMatrix, time);
 }
 
 
@@ -237,6 +239,9 @@ void OpenGLDisplayWidget::initVisualizationPipeline()
     hContourMapper = new horizontalSliceToContourMapper();
     hContourMapper->setDataSource(tornadoDataSource);
 
+    streamlinesMapper = new StreamLinesMapper();
+    streamlinesMapper->setDataSource(tornadoDataSource);
+
     // Initialize rendering modules.
     std::cout << "init bb renderer in pipe\n";
     bboxRenderer = new DataVolumeBoundingBoxRenderer();
@@ -251,4 +256,7 @@ void OpenGLDisplayWidget::initVisualizationPipeline()
 
     hContourRenderer = new horizontalContourlinesRenderer();
     hContourRenderer->setMapper(hContourMapper);
+
+    streamlinesRenderer = new StreamLinesRenderer();
+    streamlinesRenderer->setMapper(streamlinesMapper);
 }
